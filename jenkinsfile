@@ -8,9 +8,6 @@ def public_route_prefix = 'victoria'
 //test
 def git_branch = 'development'
 
-def nexus_base_url = 'https://library.mylabzolution.com'
-def nexus_deploy_repo = "$nexus_base_url/repository/ist_npm/"
-
 def cpu_req = '30m'
 def memory_req = '200Mi'
 def cpu_limit = '50m'
@@ -30,8 +27,6 @@ def health_probe_path = '/'
 def host_okd = 'https://master.okd.local:8443'
 def projectName = 'int-b-vic' 
 def ocp_project = 'int-b-vic'
-def env = 'vc-sit-fe'
-//def secret_file = 'web-esalaam-secret'
 def pull_secret = 'default-dockercfg-zbc9z'
 def channel_id = 'VC'
 //def nodeName
@@ -42,7 +37,7 @@ def gitCommitId
 
 node ('node') {
    stage ('Checkout'){
-      git url: "${git_repo}", branch: "${git_branch}", credentialsId: 'alex'
+      git url: "${git_repo}", branch: "${git_branch}", credentialsId: 'jenkinsuser'
    }
    stage ('Prepare'){
       withCredentials([[$class: 'UsernamePasswordMultiBinding',
